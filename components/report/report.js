@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import { Platform, StyleSheet, TouchableHighlight, View, Text, Picker } from 'react-native';
-import {DropView} from 'react-native-drop-down';
 
 export default class Report extends Component {
   constructor(props) {
@@ -16,8 +15,6 @@ export default class Report extends Component {
   render() {
     return (
         <View>
-            <DropView>
-            </DropView>
             <Picker selectedValue="" mode='dropdown' style={styles.picker} >
               <Picker.Item label="" value="" />
               <Picker.Item label="Gil Ziny" value="GZ" />
