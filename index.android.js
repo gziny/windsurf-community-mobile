@@ -59,6 +59,8 @@ export default class AwesomeProject extends Component {
   }
 }
 
+// adding some comment 
+
 /*
       <Navigator
         initialRoute={{ title: 'Awesome Scene', index: 0 }}
