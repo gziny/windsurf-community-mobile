@@ -1,11 +1,12 @@
 import React, { PropTypes, Component } from 'react';
-import { StyleSheet, TouchableHighlight, View, Text, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon } from 'native-base';
+
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     
-    //this.goReport = this.goReport.bind(this);
   }
   
   _onPressButton() {
@@ -14,25 +15,53 @@ export default class Home extends Component {
 
   render() {
     return (
-        <View style={styles.container}>
-            <Image source={require('../../images/justsurf.png')} />            
-            <TouchableHighlight onPress={this.props.next}>
-              <Text style={styles.welcome}>
-                  Tap to start or R to reload
-              </Text>            
-            </TouchableHighlight>
-        </View>        
+
+
+        <Container>
+            <Header >
+                <Left>
+                    <Button transparent>
+                        <Icon name='menu' />
+                    </Button>
+                </Left>
+                <Body>
+                    <Title>WindSurf Community</Title>
+                </Body>
+                <Right />
+            </Header>
+
+            <Content>
+
+
+            </Content>
+
+            <Footer>
+                <FooterTab>                                      
+                    <Button onPress={this.props.next}>
+                        <Icon name='home' />
+                    </Button>
+                    <Button onPress={this.props.next}>
+                        <Icon name='person' />
+                    </Button>
+                    <Button onPress={this.props.next}>
+                        <Icon name='pulse' />
+                    </Button>
+                    <Button onPress={this.props.next}>
+                        <Icon name='settings' />
+                    </Button>
+                </FooterTab>
+            </Footer>
+        </Container>
+
     );
   }
 }
 
-/*
-            <TouchableHighlight onPress={this.goNext(this.props.navigator)}>
-                <Text style={styles.welcome}>
-                    Tap to start or R to reload
-                </Text>
-            </TouchableHighlight>
-*/
+Home.defaultProps = {
+  logo: require('../../images/logo.png')
+};
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

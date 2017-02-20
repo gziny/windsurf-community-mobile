@@ -1,52 +1,61 @@
 import React, { PropTypes, Component } from 'react';
-//import { Platform, StyleSheet, TouchableHighlight, View, Text, Picker } from 'react-native';
 import { Platform, StyleSheet } from 'react-native';
-import { Container, Content, Body, ListItem, Text, CheckBox } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon } from 'native-base';
+
+
 
 export default class Report extends Component {
   constructor(props) {
     super(props);
-    
-    //this.goHome = this.goHome.bind(this);
 
-      /*
-        <View>
-            <Picker selectedValue="" mode='dropdown' style={styles.picker} >
-              <Picker.Item label="" value="" />
-              <Picker.Item label="Gil Ziny" value="GZ" />
-              <Picker.Item label="Moshe Cohen" value="MC" />
-            </Picker>
-            <TouchableHighlight onPress={this.props.back}>
-                <Text style={styles.report}>
-                    Tap to return
-                </Text>
-            </TouchableHighlight>
-        </View>   
-        */    
+    this.state = {
+          selectedItem: undefined,
+          selected1: 'key1',
+          results: {
+              items: []
+          }
+      }       
   }
   
-  _onPressButton() {
-    console.log("You tapped the report!");
-  } 
-
   render() {
     return (
-        <Container>
-          <Content>
-              <ListItem>
-                  <CheckBox checked={true} />
-                  <Body>
-                      <Text>Daily Stand Up</Text>
-                  </Body>
-              </ListItem>
-              <ListItem>
-                  <CheckBox checked={false} />
-                  <Body>
-                      <Text>Discussion with Client</Text>
-                  </Body>
-              </ListItem>
-          </Content>
-      </Container>
+ 
+         <Container>
+            <Header >
+                <Left>
+                    <Button transparent>
+                        <Icon name='menu' />
+                    </Button>
+                </Left>
+                <Body>
+                    <Title>Report Your Session</Title>
+                </Body>
+                <Right />
+            </Header>
+
+            <Content>
+
+
+            </Content>
+
+            <Footer>
+                <FooterTab>                                      
+                    <Button onPress={this.props.back}>
+                        <Icon name='home' />
+                    </Button>
+                    <Button onPress={this.props.back}>
+                        <Icon name='person' />
+                    </Button>
+                    <Button onPress={this.props.back}>
+                        <Icon name='pulse' />
+                    </Button>
+                    <Button onPress={this.props.back}>
+                        <Icon name='settings' />
+                    </Button>
+                </FooterTab>
+            </Footer>
+        </Container>
+
     );
   }
 }
