@@ -1,12 +1,11 @@
 import React, { PropTypes, Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon } from 'native-base';
 
 
 export default class Home extends Component {
   constructor(props) {
-    super(props);
-    
+    super(props);   
   }
   
   _onPressButton() {
@@ -14,9 +13,8 @@ export default class Home extends Component {
   }  
 
   render() {
+    console.log('Home render')
     return (
-
-
         <Container>
             <Header >
                 <Left>
@@ -31,28 +29,25 @@ export default class Home extends Component {
             </Header>
 
             <Content>
-
-
             </Content>
 
             <Footer>
                 <FooterTab>                                      
-                    <Button onPress={this.props.next}>
+                    <Button>
                         <Icon name='home' />
                     </Button>
-                    <Button onPress={this.props.next}>
+                    <Button onPress={this.props.goReport}>
                         <Icon name='person' />
                     </Button>
-                    <Button onPress={this.props.next}>
+                    <Button onPress={this.props.goStatistics}>
                         <Icon name='pulse' />
                     </Button>
-                    <Button onPress={this.props.next}>
+                    <Button onPress={this.props.goSettings}>
                         <Icon name='settings' />
                     </Button>
                 </FooterTab>
             </Footer>
         </Container>
-
     );
   }
 }
@@ -80,6 +75,7 @@ const styles = StyleSheet.create({
 
 
 Home.propTypes = {
-    next: PropTypes.func.isRequired,
-    back: PropTypes.func.isRequired,
+    goReport: PropTypes.func.isRequired,
+    goStatistics: PropTypes.func.isRequired,
+    goSettings: PropTypes.func.isRequired,
 }

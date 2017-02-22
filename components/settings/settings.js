@@ -4,7 +4,7 @@ import { Container, Header, Title, Thumbnail, DeckSwiper, Card, CardItem, Conten
 
 
 
-export default class Report extends Component {
+export default class Settings extends Component {
   constructor(props) {
     super(props);
 
@@ -28,7 +28,7 @@ export default class Report extends Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>Report Your Session</Title>
+                    <Title>Settings</Title>
                 </Body>
                 <Right />
             </Header>
@@ -69,13 +69,13 @@ export default class Report extends Component {
                     <Button onPress={this.props.goHome}>
                         <Icon name='home' />
                     </Button>
-                    <Button>
+                    <Button onPress={this.props.goReport}>
                         <Icon name='person' />
                     </Button>
                     <Button onPress={this.props.goStatistics}>
                         <Icon name='pulse' />
                     </Button>
-                    <Button onPress={this.props.goSettings}>
+                    <Button>
                         <Icon name='settings' />
                     </Button>
                 </FooterTab>
@@ -136,8 +136,8 @@ const styles = StyleSheet.create({
 });
 
 
-Report.propTypes = {
+Settings.propTypes = {
     goHome: PropTypes.func.isRequired,
-    goStatistics: PropTypes.func.isRequired,
-    goSettings: PropTypes.func.isRequired,
+    goReport: PropTypes.func.isRequired,
+    goStatistics: PropTypes.func.isRequired,    
 }

@@ -2,95 +2,99 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Navigator, View, Text, Image, TouchableHighlight } from 'react-native';
 import Home from './components/home/home';
 import Report from './components/report/report';
+import Statistics from './components/statistics/statistics';
+import Settings from './components/settings/settings';
 
 export default class AwesomeProject extends Component {
+  constructor(props) {
+    super(props);
 
-  goNext(navigator){
-    navigator.push({
-    title: 'Report',
-    index: 1,
-    });
-  }  
-
-  goBack(navigator){
-    navigator.pop();
+    this.goHome = this.goHome.bind(this);
+    this.goReport = this.goReport.bind(this);
+    this.goStatistics = this.goStatistics.bind(this);
+    this.goSettings = this.goSettings.bind(this);    
+    this.goRender = this.goRender.bind(this);    
   }
 
+  goHome(){
+      console.log('goHome');
+      this.navigatorRef.push({
+      title: 'Home',
+      index: 0,
+      });
+    }  
 
-  goRender(route, navigator){
+  goReport(){    
+      console.log('goReport');
+      this.navigatorRef.resetTo({
+      title: 'Report',
+      index: 1,
+      });
+    }  
+
+  goStatistics(){
+      console.log('goStatistics');
+      this.navigatorRef.resetTo({
+      title: 'Statistics',
+      index: 2,
+      });
+    }  
+
+  goSettings(){
+      console.log('goSettings');
+      this.navigatorRef.resetTo({
+      title: 'Settings',
+      index: 3,
+      });
+    }  
+
+  goRender(){
     let retVal;
-    switch(route.index) {
+    
+    console.log('goRender', this.routeRef.index);
+
+    switch(this.routeRef.index) {
         case 0:
-            retVal = <Home next={() => this.goNext(navigator)} back={() => this.goBack(navigator)}></Home>;
+            retVal = <Home goReport={this.goReport} goStatistics={this.goStatistics} goSettings={this.goSettings}></Home>;
             break;
         case 1:
-            retVal = <Report next={() => this.goNext(navigator)} back={() => this.goBack(navigator)}></Report>;
+            retVal = <Report goHome={this.goHome} goStatistics={this.goStatistics} goSettings={this.goSettings}></Report>;
+            break;
+        case 2:
+            retVal = <Statistics goHome={this.goHome} goReport={this.goReport} goSettings={this.goSettings}></Statistics>;
+            break;
+        case 3:
+            retVal = <Settings goHome={this.goHome} goReport={this.goReport} goStatistics={this.goStatistics}></Settings>;
             break;
         default:
-            retVal = <Home next={() => this.goNext(navigator)} back={() => this.goBack(navigator)}></Home>;
-    }          
-    return retVal;
-  }
-
-  goRenderFree(route, navigator){
-    let retVal;
-    switch(route.index) {
-        case 0:
-            retVal = <Home></Home>;
-            break;
-        case 1:
-            retVal = <Report></Report>;
-            break;
-        default:
-            retVal = <Home></Home>;
+            retVal = <Home goReport={this.goReport} goStatistics={this.goStatistics} goSettings={this.goSettings}></Home>;
     }          
     return retVal;
   }
 
   render() {
-    return (            
+    console.log('android render');    
+    return (
       <Navigator
-        initialRoute={{ title: 'Awesome Scene', index: 0 }}
-        renderScene={(route, navigator) =>
-          this.goRender(route, navigator)
+        initialRoute={{ title: 'Home', index: 0 }}
+        renderScene={(route, navigator) => {
+          console.log('renderScene -> call goRender');
+          this.routeRef  = route;
+          this.navigatorRef  = navigator;
+          return this.goRender();
         }
-      />      
+        }
+        />
     );
   }
 }
 
-// adding some comment 
 
-/*
-      <Navigator
-        initialRoute={{ title: 'Awesome Scene', index: 0 }}
-        renderScene={(route, navigator) =>
-          <Home route={route} navigator={navigator}></Home>
-          <View style={styles.container}>
-              <Image source={require('./images/justsurf.png')} />
-              <Text style={styles.welcome}>
-                  Tap to start or R to reload
-              </Text>
-          </View>                  
-
-*/
-
-/*
-  let retVal;
-  switch(route.index) {
-      case 0:
-          retVal = <Home route={route} navigator={navigator}/>;
-          break;
-      case 1:
-          retVal = <Report route={route} navigator={navigator}/>;
-          break;
-      default:
-          retVal = <Home route={route} navigator={navigator}/>;
-  }          
-  return retVal;
-*/
-
-
+Home.defaultProps = {
+  routeRef: null,
+  navigatorRef: null,
+};
+     
 const styles = StyleSheet.create({
   container: {
     flex: 1,
