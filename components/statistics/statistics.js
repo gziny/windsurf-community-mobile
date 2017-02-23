@@ -1,25 +1,19 @@
 import React, { PropTypes, Component } from 'react';
-import { Platform, StyleSheet, View, Image, Text } from 'react-native';
+import { Platform, StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import { Container, Header, Title, Thumbnail, DeckSwiper, Card, CardItem, Content, Footer, FooterTab, Button, Left, Right, Body, Icon } from 'native-base';
-
+import DatePicker from 'react-native-datepicker'
+import ScrollableTabView, {DefaultTabBar,ScrollableTabBar} from 'react-native-scrollable-tab-view'; 
+import TabPage from '../tabpage/tabpage';
 
 
 export default class Statistics extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-          selectedItem: undefined,
-          selected1: 'key1',
-          results: {
-              items: []
-          }
-      }       
   }
   
   render() {
     return (
- 
+
          <Container>
             <Header >
                 <Left>
@@ -36,30 +30,11 @@ export default class Statistics extends Component {
             <Content>
 
               <Container>
-                <View>
-                    <DeckSwiper
-                        dataSource={cards}
-                        renderItem={item =>
-                          <Card style={{ elevation: 3 }}>
-                              <CardItem>
-                                  <Left>
-                                      <Thumbnail source={item.image} />
-                                  </Left>
-                                  <Body>
-                                      <Text>{item.text}</Text>
-                                      <Text note>NativeBase</Text>
-                                  </Body>
-                              </CardItem>
-                              <CardItem cardBody>
-                                  <Image style={{ resizeMode: 'cover', width: null, flex: 1, height: 300 }} source={item.image} />
-                              </CardItem>
-                              <CardItem>
-                                  <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                                  <Text>{item.name}</Text>
-                              </CardItem>
-                          </Card>}
-                    />
+
+                <View name={this.props.index} tabLabel={this.props.index} style={styles.container}>
+                    <Image source={require('../../images/logo.png')} style={styles.image}></Image>
                 </View>
+
               </Container>
 
             </Content>
@@ -85,6 +60,42 @@ export default class Statistics extends Component {
     );
   }
 }
+
+
+
+/*
+
+                    <TabPage index={1}></TabPage>
+                    <TabPage index={2}></TabPage>
+                    <TabPage index={3}></TabPage>
+
+
+                <DatePicker
+                        style={{width: 200}}
+                        date={"2016-05-15"}
+                        mode="date"
+                        placeholder="select date"
+                        format="YYYY-MM-DD"
+                        minDate="2016-05-01"
+                        maxDate="2016-06-01"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                        dateIcon: {
+                            position: 'absolute',
+                            left: 0,
+                            top: 4,
+                            marginLeft: 0
+                        },
+                        dateInput: {
+                            marginLeft: 36
+                        }
+                        // ... You can check the source to find the other keys.
+                        }}
+                        onDateChange={(date) => {console.log(date)}}
+                    />
+
+*/
 
 const cards = [
     {

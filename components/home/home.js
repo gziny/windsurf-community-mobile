@@ -8,12 +8,7 @@ export default class Home extends Component {
     super(props);   
   }
   
-  _onPressButton() {
-    console.log("You tapped home!");
-  }  
-
   render() {
-    console.log('Home render')
     return (
         <Container>
             <Header >
@@ -52,24 +47,12 @@ export default class Home extends Component {
   }
 }
 
-Home.defaultProps = {
-  logo: require('../../images/logo.png')
-};
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-    margin: 10,
   },
 });
 

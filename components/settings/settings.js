@@ -1,20 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { Platform, StyleSheet, View, Image, Text } from 'react-native';
 import { Container, Header, Title, Thumbnail, DeckSwiper, Card, CardItem, Content, Footer, FooterTab, Button, Left, Right, Body, Icon } from 'native-base';
-
-
+import { ButtonCell,  createValidator,  emailValidator,  Form,   Section,  SwitchCell,  TextInputCell } from 'react-native-forms'
 
 export default class Settings extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-          selectedItem: undefined,
-          selected1: 'key1',
-          results: {
-              items: []
-          }
-      }       
   }
   
   render() {
@@ -35,31 +26,24 @@ export default class Settings extends Component {
 
             <Content>
 
-              <Container>
-                <View>
-                    <DeckSwiper
-                        dataSource={cards}
-                        renderItem={item =>
-                          <Card style={{ elevation: 3 }}>
-                              <CardItem>
-                                  <Left>
-                                      <Thumbnail source={item.image} />
-                                  </Left>
-                                  <Body>
-                                      <Text>{item.text}</Text>
-                                      <Text note>NativeBase</Text>
-                                  </Body>
-                              </CardItem>
-                              <CardItem cardBody>
-                                  <Image style={{ resizeMode: 'cover', width: null, flex: 1, height: 300 }} source={item.image} />
-                              </CardItem>
-                              <CardItem>
-                                  <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                                  <Text>{item.name}</Text>
-                              </CardItem>
-                          </Card>}
-                    />
-                </View>
+              <Container>                
+
+                    <Form ref={(form) => this.form = form}>
+                    <Section title={"Your Name"}>
+                        
+                        <TextInputCell
+                        ref="input"
+                        inputProps={{placeholder: "Input here"}}
+                        />
+                        <ButtonCell 
+                        ref={'Submit'}
+                        title={"Submit"}
+                        textAlign={'center'}
+                        titleColor={'red'}                        
+                        ></ButtonCell>
+                    </Section>
+                    </Form>
+                
               </Container>
 
             </Content>

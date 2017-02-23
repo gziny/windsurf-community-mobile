@@ -18,7 +18,7 @@ export default class AwesomeProject extends Component {
 
   goHome(){
       console.log('goHome');
-      this.navigatorRef.push({
+      this.navigatorRef.resetTo({
       title: 'Home',
       index: 0,
       });
@@ -75,6 +75,7 @@ export default class AwesomeProject extends Component {
   render() {
     console.log('android render');    
     return (
+
       <Navigator
         initialRoute={{ title: 'Home', index: 0 }}
         renderScene={(route, navigator) => {
@@ -85,10 +86,23 @@ export default class AwesomeProject extends Component {
         }
         }
         />
+      
     );
   }
 }
 
+/*
+      <Navigator
+        initialRoute={{ title: 'Home', index: 0 }}
+        renderScene={(route, navigator) => {
+          console.log('renderScene -> call goRender');
+          this.routeRef  = route;
+          this.navigatorRef  = navigator;
+          return this.goRender();
+        }
+        }
+        />
+*/
 
 Home.defaultProps = {
   routeRef: null,

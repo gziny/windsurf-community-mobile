@@ -1,20 +1,15 @@
 import React, { PropTypes, Component } from 'react';
 import { Platform, StyleSheet, View, Image, Text } from 'react-native';
 import { Container, Header, Title, Thumbnail, DeckSwiper, Card, CardItem, Content, Footer, FooterTab, Button, Left, Right, Body, Icon } from 'native-base';
-
+import ScrollableTabView, {DefaultTabBar,ScrollableTabBar} from 'react-native-scrollable-tab-view'; 
+import UserName from './username'
+import DateSession from './datesession'
+import Spot from './spot'
 
 
 export default class Report extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-          selectedItem: undefined,
-          selected1: 'key1',
-          results: {
-              items: []
-          }
-      }       
   }
   
   render() {
@@ -36,30 +31,19 @@ export default class Report extends Component {
             <Content>
 
               <Container>
-                <View>
-                    <DeckSwiper
-                        dataSource={cards}
-                        renderItem={item =>
-                          <Card style={{ elevation: 3 }}>
-                              <CardItem>
-                                  <Left>
-                                      <Thumbnail source={item.image} />
-                                  </Left>
-                                  <Body>
-                                      <Text>{item.text}</Text>
-                                      <Text note>NativeBase</Text>
-                                  </Body>
-                              </CardItem>
-                              <CardItem cardBody>
-                                  <Image style={{ resizeMode: 'cover', width: null, flex: 1, height: 300 }} source={item.image} />
-                              </CardItem>
-                              <CardItem>
-                                  <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                                  <Text>{item.name}</Text>
-                              </CardItem>
-                          </Card>}
-                    />
-                </View>
+                <ScrollableTabView 
+                    renderTabBar={() => <DefaultTabBar />}> 
+
+                    <UserName tabLabel={'Name'}></UserName>
+                    <DateSession tabLabel={'Date'}></DateSession>
+                    <Spot tabLabel={'Location'}></Spot>                    
+                    <UserName tabLabel={'Direction'}></UserName>
+                    <DateSession tabLabel={'Speed'}></DateSession>
+                    <Spot tabLabel={'Wave'}></Spot>                    
+                    <UserName tabLabel={'Satisfaction'}></UserName>
+                    <DateSession tabLabel={'Summary'}></DateSession>
+ 
+                </ScrollableTabView>
               </Container>
 
             </Content>
